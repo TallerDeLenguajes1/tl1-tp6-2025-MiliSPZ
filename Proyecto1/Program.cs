@@ -15,57 +15,57 @@ Console.WriteLine("Valor de b:" + b);
 
 /* */
 
-int opcion = 0, numero1 = 0, numero2 = 0, resultado = 0, continuar = 0;
-bool esNumero = false;
-string? inputOpcion, inputContinuar;
+int numero1 = 0, numero2 = 0, numero3 = 0, resultado = 0;
+bool esNumero = true;
+string? inputNumero1, inputNumero2, inputNumero3;
 
 do
 {
-    Console.WriteLine("Ingrese un numero del 1 al 5 \n (Suma: 1, Resta: 2, Multiplicacion: 3, Division: 4, Salir: 5)");
-    inputOpcion = Console.ReadLine();
-    esNumero = int.TryParse(inputOpcion, out opcion);
-
-    Console.WriteLine("Ingrese el primer numero");
-    esNumero = int.TryParse(Console.ReadLine(), out numero1);
-    Console.WriteLine("Ingrese el segundo numero");
-    esNumero = int.TryParse(Console.ReadLine(), out numero2);
-
-    switch (opcion)
+    Console.WriteLine("Ingrese un numero:");
+    inputNumero1 = Console.ReadLine();
+    esNumero = int.TryParse(inputNumero1, out numero1);
+    if (!esNumero)
     {
-        case 1:
-            Console.WriteLine("Ha elegido la opcion de la SUMA");
-            resultado = numero1 + numero2;
-            Console.WriteLine("\nEl resultao de la suma es:" + resultado);
-            break;
-        case 2:
-            Console.WriteLine("Ha elegido la opcion de la RESTA");
-            resultado = numero1 - numero2;
-            Console.WriteLine("\nEl resultao de la resta es:" + resultado);
-            break;
-        case 3:
-            Console.WriteLine("Ha elegido la opcion de la MULTIPLICACION");
-            resultado = numero1 * numero2;
-            Console.WriteLine("\nEl resultao de la multiplicacion es:" + resultado);
-            break;
-        case 4:
-            Console.WriteLine("Ha elegido la opcion de la DIVISION");
-            resultado = numero1 / numero2;
-            Console.WriteLine("\nEl resultao de la division es:" + resultado);
-            break;
-        default:
-            Console.WriteLine("Ha elegido la opcion de SALIR");
-            break;
+        Console.WriteLine("Error: No es un número válido.");
+        continue;
     }
-    Console.WriteLine("Desea continuar? \n 1. Si \n 2. No");
-    inputContinuar = Console.ReadLine();
-    esNumero = int.TryParse(inputContinuar, out continuar);
-    if (continuar == 2)
-    {
-        opcion = 5;
-        Console.WriteLine("Ha elegido la opcion de SALIR");
-    }
+
+    double num = numero1;
+
+    Console.WriteLine($"Valor absoluto: {Math.Abs(num)}");
+    Console.WriteLine($"Cuadrado: {Math.Pow(num, 2)}");
+    if (num >= 0)
+        Console.WriteLine($"Raíz cuadrada: {Math.Sqrt(num)}");
     else
+        Console.WriteLine("Raíz cuadrada: No definida para números negativos");
+
+    Console.WriteLine($"Seno: {Math.Sin(num)}");
+    Console.WriteLine($"Coseno: {Math.Cos(num)}");
+
+    float numFloat = (float)num;
+    Console.WriteLine($"Parte entera (float): {Math.Truncate(numFloat)}");
+
+    Console.WriteLine("Ingrese otros dos numeros:");
+    Console.WriteLine("Ingrese el primer numero:");
+    inputNumero2 = Console.ReadLine();
+    esNumero = int.TryParse(inputNumero2, out numero2);
+    if (!esNumero)
     {
-        opcion = 0;
+        Console.WriteLine("Error: No es un número válido.");
+        continue;
     }
-} while (opcion != 5);
+    Console.WriteLine("Ingrese el segundo numero:");
+    inputNumero3 = Console.ReadLine();
+    esNumero = int.TryParse(inputNumero3, out numero3);
+    if (!esNumero)
+    {
+        Console.WriteLine("Error: No es un número válido.");
+        continue;
+    }
+
+
+    Console.WriteLine($"El máximo entre los dos numeros es: {Math.Max(numero2, numero3)}");
+    Console.WriteLine($"El mínimo entre los dos numeros es: {Math.Min(numero2, numero3)}");
+
+
+} while (esNumero);
