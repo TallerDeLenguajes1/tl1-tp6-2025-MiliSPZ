@@ -11,35 +11,61 @@ Console.WriteLine("Valor de a:" + a);
 Console.WriteLine("Valor de b:" + b);
 
 /* ------------------------------ */
-/* ---------Ejercicio1-------- */
+/* ---------Ejercicio2-------- */
 
-/* Construir un programa que permita invertir un número. Verifique que el
-texto ingresado es de hecho un número y, en caso afirmativo, realice la inversión del número sólo si éste es mayor a 0.
+/* */
 
-Nota: Si observa un subrayado amarillo sugiriendo modificar las variables al tipo
-"nullable", abra el archivo de configuración de proyecto de extensión .csproj y elimine
-la línea que dice <Nullable>enable</Nullable>. No olvide guardar el archivo. */
-Console.WriteLine("Ingrese un numero mayor que 0");
-int number = 0;
-var num = Console.ReadLine();
-bool esNumero = int.TryParse(num, out number);
+int opcion = 0, numero1 = 0, numero2 = 0, resultado = 0, continuar = 0;
+bool esNumero = false;
+string? inputOpcion, inputContinuar;
 
-if (esNumero)
+do
 {
-    if (number < 10)
+    Console.WriteLine("Ingrese un numero del 1 al 5 \n (Suma: 1, Resta: 2, Multiplicacion: 3, Division: 4, Salir: 5)");
+    inputOpcion = Console.ReadLine();
+    esNumero = int.TryParse(inputOpcion, out opcion);
+
+    Console.WriteLine("Ingrese el primer numero");
+    esNumero = int.TryParse(Console.ReadLine(), out numero1);
+    Console.WriteLine("Ingrese el segundo numero");
+    esNumero = int.TryParse(Console.ReadLine(), out numero2);
+
+    switch (opcion)
     {
-        Console.WriteLine("El numero es:" + number);
+        case 1:
+            Console.WriteLine("Ha elegido la opcion de la SUMA");
+            resultado = numero1 + numero2;
+            Console.WriteLine("\nEl resultao de la suma es:" + resultado);
+            break;
+        case 2:
+            Console.WriteLine("Ha elegido la opcion de la RESTA");
+            resultado = numero1 - numero2;
+            Console.WriteLine("\nEl resultao de la resta es:" + resultado);
+            break;
+        case 3:
+            Console.WriteLine("Ha elegido la opcion de la MULTIPLICACION");
+            resultado = numero1 * numero2;
+            Console.WriteLine("\nEl resultao de la multiplicacion es:" + resultado);
+            break;
+        case 4:
+            Console.WriteLine("Ha elegido la opcion de la DIVISION");
+            resultado = numero1 / numero2;
+            Console.WriteLine("\nEl resultao de la division es:" + resultado);
+            break;
+        default:
+            Console.WriteLine("Ha elegido la opcion de SALIR");
+            break;
+    }
+    Console.WriteLine("Desea continuar? \n 1. Si \n 2. No");
+    inputContinuar = Console.ReadLine();
+    esNumero = int.TryParse(inputContinuar, out continuar);
+    if (continuar == 2)
+    {
+        opcion = 5;
+        Console.WriteLine("Ha elegido la opcion de SALIR");
     }
     else
     {
-        int invertido = 0;
-        int temp = number;
-        while (temp > 0)
-        {
-            int digito = temp % 10;
-            invertido = invertido * 10 + digito;
-            temp /= 10;
-        }
-        Console.WriteLine("El número invertido es: " + invertido);
+        opcion = 0;
     }
-}
+} while (opcion != 5);
